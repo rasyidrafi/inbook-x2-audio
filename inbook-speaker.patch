@@ -1,0 +1,9 @@
+--- a/sof_es8336.c
++++ b/sof_es8336.c
+@@ -123,1 +123,5 @@
+-		gpiod_set_value_cansleep(priv->gpio_headphone, !priv->speaker_en);
++		gpiod_set_value_cansleep(priv->gpio_headphone,
++			dmi_match(DMI_SYS_VENDOR, "Infinix") &&
++			dmi_match(DMI_BOARD_NAME, "EM_IC325_200B_V1.0 20211012") ?
++			priv->speaker_en : !priv->speaker_en);
++

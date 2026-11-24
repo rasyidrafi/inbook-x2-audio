@@ -1,0 +1,9 @@
+[Unit]
+Description=Recover missing Inbook audio outputs after login
+After=wireplumber.service
+
+[Service]
+Type=oneshot
+ExecCondition=/usr/bin/grep -q sofessx8336 /proc/asound/cards
+ExecCondition=/bin/sh -c 'test "$(pactl list short sinks | cut -f2)" = auto_null'
+ExecStart=/usr/bin/systemctl --user restart wireplumber.service

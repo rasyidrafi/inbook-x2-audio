@@ -1,0 +1,9 @@
+[Unit]
+Description=Check Inbook audio once after user-session startup
+
+[Timer]
+OnActiveSec=15s
+AccuracySec=1s
+
+[Install]
+WantedBy=timers.target
